@@ -15,35 +15,12 @@ class ApiCredential extends Model
     use HasFactory;
     use WithSearchableEncryptedAttribute;
 
-    /**
-     * log any attribute that has been affected in this model
-     *
-     * @var array
-     */
-    protected static $logAttributes = ['*'];
+    protected $guarded = [];
+
+    protected $table = 'key_api_credentials';
 
     /**
-     * chose whether to log only changed attributes
-     *
-     * @var boolean
-     */
-    protected static $logOnlyDirty = true;
-
-    /**
-     * Modify the description for events
-     *
-     * @param string $eventName
-     * @return string
-     */
-    public function getDescriptionForEvent(string $eventName): string
-    {
-        return "This User has been {$eventName}";
-    }
-
-    protected $fillable = ['public_key', 'private_key', 'secret_hash'];
-
-    /**
-     * Statues for api keys
+     * Statues for api credential
      */
     public const STATUSES = [
         'ACTIVE' => 'active',
@@ -53,12 +30,12 @@ class ApiCredential extends Model
     /**
      * Public key prefix
      */
-    public const PUBLIC_KEY_PREFIX = 'key_pub';
+    public const PUBLIC_KEY_PREFIX = 'api_key_pub';
 
     /**
      * Private key prefix
      */
-    public const PRIVATE_KEY_PREFIX = 'key_prv';
+    public const PRIVATE_KEY_PREFIX = 'api_key_prv';
 
     /**
      * The hidden columns

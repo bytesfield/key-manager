@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApiCredentialsTable extends Migration
+class CreateKeyApiCredentialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateApiCredentialsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('api_credentials', function (Blueprint $table) {
+        Schema::create('key_api_credentials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('key_client_id')->constrained()->cascadeOnDelete();
             $table->longText('public_key');
             $table->longText('private_key');
             $table->longText('secret_hash')->nullable();

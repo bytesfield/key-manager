@@ -1,6 +1,6 @@
 {
     "name": "bytesfield/key-manager",
-    "description": "Key Management solutions for generating public and private key pairs storing and retrieving the master encryption key.",
+    "description": "Api Key Management for generating public and private key pairs storing and retrieving the master encryption key.",
     "type": "library",
     "license": "MIT",
     "authors": [

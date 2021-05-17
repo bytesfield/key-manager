@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'encryption_key' => env('API_ENCRYPTION_KEY', 'bcdb88fb0d2783f286248d647ae9f4b2a8c3504e5bfbdc5ecc8f485050eb00bb'),
+    'encryption_key' => env('API_ENCRYPTION_KEY'),
+    'public_key_prefix' => env('API_PUBLIC_KEY_PREFIX', 'api_key_pub'),
+    'private_key_prefix' => env('API_PRIVATE_KEY_PREFIX', 'api_key_prv')
 ];

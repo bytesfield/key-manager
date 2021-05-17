@@ -10,12 +10,13 @@ class KeyManager implements KeyManagerInterface
 {
 
     /**
-     * function to create a new client application
+     * Create a new client with credentials
      *
      * @param string $name
      * @param int $user
      * @param string $type
      * @param string $status
+     * 
      * @return array
      */
     public function createClient(string $name, string $type, int  $userId = null,  string $status = "active"): array
@@ -24,12 +25,12 @@ class KeyManager implements KeyManagerInterface
             return $this->response(false, 400, "Status must be either active or suspended");
         }
 
-        $client = new Client();
-        $client->user_id = $userId;
-        $client->name = $name;
-        $client->type = $type;
-        $client->status = $status;
-        $client->save();
+        $client = Client::create([
+            'user_id' => $userId,
+            'name' => $name,
+            'type' => $type,
+            'status' => $status
+        ]);
 
         $client->apiCredential()->create(ApiCredential::generateKeyPairArray());
 
@@ -38,7 +39,7 @@ class KeyManager implements KeyManagerInterface
 
 
     /**
-     * return clients private key
+     * Get client's private key
      *
      * @param integer $client_id
      * @return array
@@ -50,18 +51,18 @@ class KeyManager implements KeyManagerInterface
             return $this->response(false, 400, "No client found with id $client_id");
         }
 
-        return $this->response(true, 200, "Key fetched successfully", ["key" => $client->apiCredential->private_key]);
+        return $this->response(true, 200, "Key retrieved successfully", ["key" => $client->apiCredential->private_key]);
     }
 
     /**
-     * Change client public and private keys
+     * Change Client's public and private keys
      *
      * @param integer $client_id
      * @return array
      */
     public function changeKeys(int $client_id): array
     {
-        $key = ApiCredential::where('client_id', $client_id)->first();
+        $key = ApiCredential::where('key_client_id', $client_id)->first();
 
         if (!$key) {
             return $this->response(false, 400, "Client information not found");
@@ -69,11 +70,11 @@ class KeyManager implements KeyManagerInterface
 
         $key->update(ApiCredential::generateKeyPairArray());
 
-        return $this->response(true, 200, "keys successfully changed", ["key" => $key->private_key]);
+        return $this->response(true, 200, "Api Keys successfully changed", ["key" => $key->private_key]);
     }
 
     /**
-     * suspend client account
+     * Suspend Client's Account
      *
      * @param integer $client_id
      * @return array
@@ -85,14 +86,15 @@ class KeyManager implements KeyManagerInterface
             return $this->response(false, 400, "No client found with id $client_id");
         }
 
-        $client->status = "suspended";
-        $client->save();
+        $client->update([
+            'status' => ApiCredential::STATUSES['SUSPENDED']
+        ]);
 
-        return $this->response(false, 200, "Client successfully suspended");
+        return $this->response(true, 200, "Client successfully suspended");
     }
 
     /**
-     * Activate client account
+     * Activate Client's Account
      *
      * @param integer $client_id
      * @return array
@@ -104,8 +106,9 @@ class KeyManager implements KeyManagerInterface
             return $this->response(false, 400,  "No client found with id $client_id");
         }
 
-        $client->status = ApiCredential::STATUSES['ACTIVE'];
-        $client->save();
+        $client->update([
+            'status' => ApiCredential::STATUSES['ACTIVE']
+        ]);
 
         return $this->response(true, 200, "Client successfully activated");
     }
@@ -118,14 +121,15 @@ class KeyManager implements KeyManagerInterface
      */
     public function suspendApiCredential(int $client_id): array
     {
-        $key = ApiCredential::where('client_id', $client_id)->first();
+        $key = ApiCredential::where('key_client_id', $client_id)->first();
 
         if (!$key) {
             return $this->response(false, 404, "Client information not found");
         }
 
-        $key->status =  ApiCredential::STATUSES['SUSPENDED'];
-        $key->save();
+        $key->update([
+            'status' => ApiCredential::STATUSES['SUSPENDED']
+        ]);
 
         return $this->response(true, 200, "ApiCredential successfully suspended");
     }
@@ -138,14 +142,15 @@ class KeyManager implements KeyManagerInterface
      */
     public function activateApiCredential(int $client_id): array
     {
-        $key = ApiCredential::where('client_id', $client_id)->first();
+        $key = ApiCredential::where('key_client_id', $client_id)->first();
 
         if (!$key) {
             return $this->response(false, 404, "Client information not found");
         }
 
-        $key->status = ApiCredential::STATUSES['ACTIVE'];
-        $key->save();
+        $key->update([
+            'status' => ApiCredential::STATUSES['ACTIVE']
+        ]);
 
         return $this->response(true, 200, "ApiCredential successfully activated");
     }

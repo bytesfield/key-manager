@@ -10,32 +10,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Client extends Model
 {
     use HasFactory;
-    //use LoggerOverided;
 
-    /**
-     * log any attribute that has been affected in this model
-     *
-     * @var array
-     */
-    protected static $logAttributes = ['*'];
+    protected $guarded = [];
 
-    /**
-     * chose whether to log only changed attributes
-     *
-     * @var boolean
-     */
-    protected static $logOnlyDirty = true;
-
-    /**
-     * Modify the description for events
-     *
-     * @param string $eventName
-     * @return string
-     */
-    public function getDescriptionForEvent(string $eventName): string
-    {
-        return "This User has been {$eventName}";
-    }
+    protected $table = 'key_clients';
 
     /**
      * Get the api key for the related client
@@ -44,6 +22,6 @@ class Client extends Model
      */
     public function apiCredential(): HasOne
     {
-        return $this->hasOne(ApiCredential::class, 'client_id');
+        return $this->hasOne(ApiCredential::class, 'key_client_id');
     }
 }

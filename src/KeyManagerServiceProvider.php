@@ -12,7 +12,11 @@ use Bytesfield\KeyManager\Commands\GetApiKeyCommand;
 use Bytesfield\KeyManager\Commands\ChangeKeysCommand;
 use ParagonIE\CipherSweet\KeyProvider\StringProvider;
 use Bytesfield\KeyManager\Commands\CreateClientCommand;
+use Bytesfield\KeyManager\Commands\SuspendClientCommand;
+use Bytesfield\KeyManager\Commands\ActivateClientCommand;
 use Bytesfield\KeyManager\Http\Middleware\AuthenticateClient;
+use Bytesfield\KeyManager\Commands\SuspendApiCredentialCommand;
+use Bytesfield\KeyManager\Commands\ActivateApiCredentialCommand;
 use Bytesfield\KeyManager\Commands\GenerateEncryptionKeyCommand;
 
 
@@ -52,6 +56,10 @@ class KeyManagerServiceProvider extends ServiceProvider
                 CreateClientCommand::class,
                 GetApiKeyCommand::class,
                 ChangeKeysCommand::class,
+                SuspendClientCommand::class,
+                ActivateClientCommand::class,
+                SuspendApiCredentialCommand::class,
+                ActivateApiCredentialCommand::class,
 
             ]);
         }
