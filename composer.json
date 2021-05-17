@@ -1,0 +1,42 @@
+{
+    "name": "bytesfield/key-manager",
+    "description": "Key Management solutions for generating public and private key pairs storing and retrieving the master encryption key.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Abraham Udele",
+            "email": "abrahamudele@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/contracts": "^8.0",
+        "paragonie/ciphersweet": "^2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bytesfield\\KeyManager\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bytesfield\\KeyManager\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bytesfield\\KeyManager\\KeyManagerServiceProvider"
+            ]
+        }
+    }
+}
