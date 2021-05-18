@@ -19,14 +19,13 @@ class KeyManager implements KeyManagerInterface
      * 
      * @return array
      */
-    public function createClient(string $name, string $type, int  $userId = null,  string $status = "active"): array
+    public function createClient(string $name, string $type, string $status = "active"): array
     {
-        if (!in_array($status, ['active', 'suspended'])) {
+        if (!in_array($status, [ApiCredential::STATUSES['ACTIVE'], ApiCredential::STATUSES['SUSPENDED']])) {
             return $this->response(false, 400, "Status must be either active or suspended");
         }
 
         $client = Client::create([
-            'user_id' => $userId,
             'name' => $name,
             'type' => $type,
             'status' => $status

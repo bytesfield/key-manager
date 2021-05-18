@@ -15,7 +15,6 @@ class CreateKeyClientsTable extends Migration
     {
         Schema::create('key_clients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('type');
             $table->enum('status', ['active', 'suspended'])->default('active');

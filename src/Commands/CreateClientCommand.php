@@ -13,7 +13,7 @@ class CreateClientCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'client:create {name} {type} {userId?} {status=active}';
+    protected $signature = 'client:create {name} {type} {status=active}';
 
     /**
      * The console command description.
@@ -57,11 +57,9 @@ class CreateClientCommand extends Command
 
         $type = $this->argument('type');
 
-        $userId = $this->argument('userId');
-
         $status = $this->argument('status');
 
-        $client = $this->manager->createClient($name, $type, $userId, $status);
+        $client = $this->manager->createClient($name, $type, $status);
 
         $this->info($client['status'] == true ? 'Success' : 'Failed');
 

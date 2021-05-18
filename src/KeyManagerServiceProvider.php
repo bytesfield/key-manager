@@ -14,7 +14,7 @@ use ParagonIE\CipherSweet\KeyProvider\StringProvider;
 use Bytesfield\KeyManager\Commands\CreateClientCommand;
 use Bytesfield\KeyManager\Commands\SuspendClientCommand;
 use Bytesfield\KeyManager\Commands\ActivateClientCommand;
-use Bytesfield\KeyManager\Http\Middleware\AuthenticateClient;
+use Bytesfield\KeyManager\Middlewares\AuthenticateClient;
 use Bytesfield\KeyManager\Commands\SuspendApiCredentialCommand;
 use Bytesfield\KeyManager\Commands\ActivateApiCredentialCommand;
 use Bytesfield\KeyManager\Commands\GenerateEncryptionKeyCommand;
@@ -31,6 +31,12 @@ class KeyManagerServiceProvider extends ServiceProvider
     {
         $this->registerCipherSweet();
         $this->app->singleton(KeyManagerInterface::class, KeyManager::class);
+
+        $this->app->bind('keymanager', function ($app) {
+
+            return new KeyManager($app->request);
+        });
+        $this->app->alias('keymanager', "Bytesfield\KeyManager\KeyManager");
     }
 
     /**
@@ -40,17 +46,21 @@ class KeyManagerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //Loads Package Migration
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        $this->publishes([
-            __DIR__ . '/config/keymanager.php' => config_path('keymanager.php'),
-        ]);
 
-        //register our middleware
+        //Register Package Middleware
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('auth.client', AuthenticateClient::class);
 
-        //register our console commands
         if ($this->app->runningInConsole()) {
+
+            //Publishes Package Config
+            $this->publishes([
+                __DIR__ . '/config/keymanager.php' => config_path('keymanager.php'),
+            ]);
+
+            //Register Package Console Commands
             $this->commands([
                 GenerateEncryptionKeyCommand::class,
                 CreateClientCommand::class,
@@ -73,7 +83,7 @@ class KeyManagerServiceProvider extends ServiceProvider
     private function registerCipherSweet(): void
     {
         $this->app->singleton(CipherSweet::class, function () {
-            $key = config('keymanager.encryption_key');
+            $key = '47f9c579776a486ce0592803c1174132ae190286dc87a498d938560f8bf31563';
 
             if (empty($key)) {
                 throw new \RuntimeException(

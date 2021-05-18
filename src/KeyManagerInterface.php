@@ -4,7 +4,7 @@ namespace Bytesfield\KeyManager;
 
 interface KeyManagerInterface
 {
-    public function createClient(string $name,  string $type, int $userId = null, string $status = "active"): array;
+    public function createClient(string $name,  string $type, string $status = "active"): array;
 
     public function getPrivateKey(int $client_id): array;
 

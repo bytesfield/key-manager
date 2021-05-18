@@ -1,6 +1,6 @@
 <?php
 
-namespace Bytesfield\KeyManager\Http\Middleware;
+namespace Bytesfield\KeyManager\Middleware;
 
 use Bytesfield\KeyManager\Models\ApiCredential;
 use Bytesfield\KeyManager\Models\Client;
