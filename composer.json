@@ -3,6 +3,8 @@
     "description": "Api Key Management for generating public and private key pairs storing and retrieving the master encryption key.",
     "type": "library",
     "license": "MIT",
+    "keywords": ["encryption","key","public","private","manager"],
+    "homepage": "https://github.com/bytesfield/key-manager",
     "authors": [
         {
             "name": "Abraham Udele",
