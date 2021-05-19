@@ -11,7 +11,6 @@ class ApiCredentialTest extends TestCase
 
     public function testItCanNotGetPrivateKeyIfClientDoesNotExist()
     {
-
         $response = $this->keyManager->getPrivateKey(20);
 
         $this->assertFalse($response['status']);
@@ -20,7 +19,6 @@ class ApiCredentialTest extends TestCase
 
     public function testItCanGetPrivateKeyIfClientExist()
     {
-
         $client = $this->createNewClient();
 
         $response = $this->keyManager->getPrivateKey($client['data']['id']);
@@ -32,7 +30,6 @@ class ApiCredentialTest extends TestCase
 
     public function testItCanNotChangeKeysIfClientDoesNotExist()
     {
-
         $response = $this->keyManager->changeKeys(20);
 
         $this->assertFalse($response['status']);
@@ -42,7 +39,6 @@ class ApiCredentialTest extends TestCase
     {
         $client = $this->createNewClient();
 
-
         $response = $this->keyManager->changeKeys($client['data']['id']);
 
         $this->assertTrue($response['status']);
@@ -51,7 +47,6 @@ class ApiCredentialTest extends TestCase
 
     public function testItCanNotSuspendCredentialIfClientDoesNotExist()
     {
-
         $response = $this->keyManager->suspendApiCredential(20);
 
         $this->assertFalse($response['status']);
@@ -62,7 +57,6 @@ class ApiCredentialTest extends TestCase
     {
         $client = $this->createNewClient();
 
-
         $response = $this->keyManager->suspendApiCredential($client['data']['id']);
 
         $this->assertTrue($response['status']);
@@ -71,7 +65,6 @@ class ApiCredentialTest extends TestCase
 
     public function testItCanNotActivateCredentialIfClientDoesNotExist()
     {
-
         $response = $this->keyManager->activateApiCredential(20);
 
         $this->assertFalse($response['status']);
@@ -81,7 +74,6 @@ class ApiCredentialTest extends TestCase
     public function testItCanActivateCredentialIfClientExist()
     {
         $client = $this->createNewClient();
-
 
         $response = $this->keyManager->activateApiCredential($client['data']['id']);
 

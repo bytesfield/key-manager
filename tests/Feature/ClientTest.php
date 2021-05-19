@@ -33,10 +33,10 @@ class ClientTest extends TestCase
         $this->assertFalse($response['status']);
         $this->assertEquals(400, $response['statusCode']);
     }
+
     public function testItCanSuspendClientThatExist()
     {
         $client = $this->createNewClient();
-
 
         $response = $this->keyManager->suspendClient($client['data']['id']);
 

@@ -15,6 +15,7 @@
         "paragonie/ciphersweet": "^2"
     },
     "require-dev": {
+        "nunomaduro/collision": "9999999-dev",
         "orchestra/testbench": "^6.x-dev",
         "phpunit/phpunit": "9.5.x-dev"
     },
@@ -25,8 +26,8 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test-f": "vendor/bin/phpunit --filter"
+        "test": "./vendor/bin/testbench package:test",
+        "test-f": "vendor/bin/testbench --filter"
     },
     "config": {
         "sort-packages": true

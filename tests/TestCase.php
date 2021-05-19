@@ -37,8 +37,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function createNewClient()
     {
-        $keyManager = app(KeyManager::class);
-
-        return $keyManager->createClient('Amazon', 'user', ApiCredential::STATUSES['ACTIVE']);
+        return $this->keyManager->createClient('Amazon', 'user', ApiCredential::STATUSES['ACTIVE']);
     }
 }
