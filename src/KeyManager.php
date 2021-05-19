@@ -123,7 +123,7 @@ class KeyManager implements KeyManagerInterface
         $key = ApiCredential::where('key_client_id', $client_id)->first();
 
         if (!$key) {
-            return $this->response(false, 404, "Client information not found");
+            return $this->response(false, 400, "Client information not found");
         }
 
         $key->update([
@@ -144,7 +144,7 @@ class KeyManager implements KeyManagerInterface
         $key = ApiCredential::where('key_client_id', $client_id)->first();
 
         if (!$key) {
-            return $this->response(false, 404, "Client information not found");
+            return $this->response(false, 400, "Client information not found");
         }
 
         $key->update([

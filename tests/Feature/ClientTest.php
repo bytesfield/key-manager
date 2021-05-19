@@ -2,21 +2,17 @@
 
 namespace Bytesfield\KeyManager\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
-use Bytesfield\KeyManager\KeyManager;
 use Bytesfield\KeyManager\Models\ApiCredential;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Bytesfield\KeyManager\Tests\TestCase;
 
 class ClientTest extends TestCase
 {
-    use RefreshDatabase, DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testItCanCreateClient()
     {
-        $key = app(KeyManager::class);
-
-        $response = $key->createClient('Amazon', 'user', ApiCredential::STATUSES['ACTIVE']);
+        $response = $this->keyManager->createClient('Amazon', 'user', ApiCredential::STATUSES['ACTIVE']);
 
         $this->assertTrue($response['status']);
         $this->assertEquals(200, $response['statusCode']);
@@ -24,9 +20,7 @@ class ClientTest extends TestCase
 
     public function testItCanNotCreateClientWithInvalidStatus()
     {
-        $key = app(KeyManager::class);
-
-        $response = $key->createClient('Amazon', 'user', 'live');
+        $response = $this->keyManager->createClient('Amazon', 'user', 'live');
 
         $this->assertFalse($response['status']);
         $this->assertEquals(400, $response['statusCode']);
@@ -34,9 +28,7 @@ class ClientTest extends TestCase
 
     public function testItCanNotSuspendClientThatDoesNotExist()
     {
-        $key = app(KeyManager::class);
-
-        $response = $key->suspendClient(20);
+        $response = $this->keyManager->suspendClient(20);
 
         $this->assertFalse($response['status']);
         $this->assertEquals(400, $response['statusCode']);
@@ -45,9 +37,8 @@ class ClientTest extends TestCase
     {
         $client = $this->createNewClient();
 
-        $key = app(KeyManager::class);
 
-        $response = $key->suspendClient($client['data']['id']);
+        $response = $this->keyManager->suspendClient($client['data']['id']);
 
         $this->assertTrue($response['status']);
         $this->assertEquals(200, $response['statusCode']);
@@ -55,9 +46,7 @@ class ClientTest extends TestCase
 
     public function testItCanNotActivateClientThatDoesNotExist()
     {
-        $key = app(KeyManager::class);
-
-        $response = $key->activateClient(20);
+        $response = $this->keyManager->activateClient(20);
 
         $this->assertFalse($response['status']);
         $this->assertEquals(400, $response['statusCode']);
@@ -67,18 +56,9 @@ class ClientTest extends TestCase
     {
         $client = $this->createNewClient();
 
-        $key = app(KeyManager::class);
-
-        $response = $key->activateClient($client['data']['id']);
+        $response = $this->keyManager->activateClient($client['data']['id']);
 
         $this->assertTrue($response['status']);
         $this->assertEquals(200, $response['statusCode']);
-    }
-
-    public function createNewClient()
-    {
-        $key = app(KeyManager::class);
-
-        return $key->createClient('Amazon', 'user', ApiCredential::STATUSES['ACTIVE']);
     }
 }
