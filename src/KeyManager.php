@@ -10,10 +10,9 @@ class KeyManager implements KeyManagerInterface
 {
 
     /**
-     * Create a new client with credentials
+     * Create a new Client with Api credentials
      *
      * @param string $name
-     * @param int $user
      * @param string $type
      * @param string $status
      * 
@@ -40,12 +39,14 @@ class KeyManager implements KeyManagerInterface
     /**
      * Get client's private key
      *
-     * @param integer $client_id
+     * @param int $client_id
+     * 
      * @return array
      */
     public function getPrivateKey(int $client_id): array
     {
         $client = Client::with('apiCredential')->where('id', $client_id)->first();
+
         if (!$client) {
             return $this->response(false, 400, "No client found with id $client_id");
         }
@@ -56,7 +57,8 @@ class KeyManager implements KeyManagerInterface
     /**
      * Change Client's public and private keys
      *
-     * @param integer $client_id
+     * @param int $client_id
+     * 
      * @return array
      */
     public function changeKeys(int $client_id): array
@@ -75,12 +77,14 @@ class KeyManager implements KeyManagerInterface
     /**
      * Suspend Client's Account
      *
-     * @param integer $client_id
+     * @param int $client_id
+     * 
      * @return array
      */
     public function suspendClient(int $client_id): array
     {
         $client = Client::find($client_id);
+
         if (!$client) {
             return $this->response(false, 400, "No client found with id $client_id");
         }
@@ -95,12 +99,14 @@ class KeyManager implements KeyManagerInterface
     /**
      * Activate Client's Account
      *
-     * @param integer $client_id
+     * @param int $client_id
+     * 
      * @return array
      */
     public function activateClient(int $client_id): array
     {
         $client = Client::find($client_id);
+
         if (!$client) {
             return $this->response(false, 400,  "No client found with id $client_id");
         }
@@ -113,9 +119,10 @@ class KeyManager implements KeyManagerInterface
     }
 
     /**
-     * Suspend Api Credential
+     * Suspend Client's Api Credential
      *
-     * @param integer $client_id
+     * @param int $client_id
+     * 
      * @return array
      */
     public function suspendApiCredential(int $client_id): array
@@ -134,9 +141,10 @@ class KeyManager implements KeyManagerInterface
     }
 
     /**
-     * Activate ApiCredential
+     * Activate Client's Api Credential
      *
-     * @param integer $client_id
+     * @param int $client_id
+     * 
      * @return array
      */
     public function activateApiCredential(int $client_id): array
@@ -158,9 +166,11 @@ class KeyManager implements KeyManagerInterface
     /**
      * Response array
      *
-     * @param boolean $success
+     * @param boolean $status
+     * @param int $statusCode
      * @param string $message
      * @param array $data
+     * 
      * @return array
      */
     private function response(bool $status, int $statusCode, string $message, array $data = []): array
