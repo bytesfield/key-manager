@@ -38,6 +38,7 @@ class ClientTest extends TestCase
     {
         $client = $this->createNewClient();
 
+
         $response = $this->keyManager->suspendClient($client['data']['id']);
 
         $this->assertTrue($response['status']);

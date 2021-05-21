@@ -23,13 +23,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Bytesfield\\KeyManager\\": "src/",
+            "Bytesfield\\KeyManager\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Bytesfield\\KeyManager\\Tests\\": "tests/"
         }
     },
     "scripts": {
-        "test": "./vendor/bin/testbench package:test",
-        "test-f": "vendor/bin/testbench --filter"
+        "test": "./vendor/bin/testbench package:test"
     },
     "config": {
         "sort-packages": true
