@@ -15,6 +15,7 @@ use Bytesfield\KeyManager\Commands\CreateClientCommand;
 use Bytesfield\KeyManager\Commands\SuspendClientCommand;
 use Bytesfield\KeyManager\Commands\ActivateClientCommand;
 use Bytesfield\KeyManager\Middlewares\AuthenticateClient;
+use Bytesfield\KeyManager\Commands\InstallKeyManagerCommand;
 use Bytesfield\KeyManager\Commands\SuspendApiCredentialCommand;
 use Bytesfield\KeyManager\Commands\ActivateApiCredentialCommand;
 use Bytesfield\KeyManager\Commands\GenerateEncryptionKeyCommand;
@@ -58,7 +59,15 @@ class KeyManagerServiceProvider extends ServiceProvider
             //Publishes Package Config
             $this->publishes([
                 __DIR__ . '/config/keymanager.php' => config_path('keymanager.php'),
-            ]);
+            ], 'config');
+
+            //Publishes Migrations
+            if (!class_exists('CreateKeyClientsTable') && !class_exists('CreateKeyApiCredentialsTable')) {
+                $this->publishes([
+                    __DIR__ . '/database/migrations/2020_12_19_075709_create_key_clients_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '1' . '_create_key_clients_table.php'),
+                    __DIR__ . '/database/migrations/2020_12_19_075855_create_key_api_credentials_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '2' . '_create_key_api_credentials_table.php'),
+                ], 'migrations');
+            }
 
             //Register Package Console Commands
             $this->commands([
@@ -70,6 +79,7 @@ class KeyManagerServiceProvider extends ServiceProvider
                 ActivateClientCommand::class,
                 SuspendApiCredentialCommand::class,
                 ActivateApiCredentialCommand::class,
+                InstallKeyManagerCommand::class,
 
             ]);
         }
