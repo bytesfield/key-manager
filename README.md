@@ -1,4 +1,4 @@
-<p align="center"><img src="/images/key-pairs.jpg" alt="Key Manager Preview"></p>
+<p align="center"><img src="/images/key-pairs.jpeg" alt="Key Manager Preview"></p>
 
 # Key Manager
 
