@@ -32,7 +32,8 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/testbench package:test"
+        "test": "./vendor/bin/testbench package:test",
+        "test-f": "./vendor/bin/testbench package:test --filter"
     },
     "config": {
         "sort-packages": true
