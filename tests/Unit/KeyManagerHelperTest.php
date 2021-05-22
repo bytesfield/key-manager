@@ -10,7 +10,7 @@ class KeyManagerHelperTest extends TestCase
 
     public function testItReturnsInstanceOfKeyManagerIfCalledWithAlias()
     {
-        $keymanager = $this->app->make("keymanager");
+        $keymanager = $this->app->make("key-manager");
 
         $this->assertTrue($keymanager instanceof KeyManager);
     }

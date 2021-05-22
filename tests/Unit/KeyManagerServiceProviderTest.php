@@ -11,7 +11,7 @@ class KeyManagerServiceProviderTest extends TestCase
      */
     public function testIsBound()
     {
-        $this->assertTrue($this->app->bound('keymanager'));
+        $this->assertTrue($this->app->bound('key-manager'));
     }
 
     /**
@@ -22,6 +22,6 @@ class KeyManagerServiceProviderTest extends TestCase
         $alias = "Bytesfield\KeyManager\KeyManager";
 
         $this->assertTrue($this->app->isAlias($alias));
-        $this->assertEquals('keymanager', $this->app->getAlias($alias));
+        $this->assertEquals('key-manager', $this->app->getAlias($alias));
     }
 }
