@@ -33,11 +33,11 @@ class KeyManagerServiceProvider extends ServiceProvider
         $this->registerCipherSweet();
         $this->app->singleton(KeyManagerInterface::class, KeyManager::class);
 
-        $this->app->bind('keymanager', function ($app) {
+        $this->app->bind('key-manager', function ($app) {
 
             return new KeyManager($app->request);
         });
-        $this->app->alias('keymanager', "Bytesfield\KeyManager\KeyManager");
+        $this->app->alias('key-manager', "Bytesfield\KeyManager\KeyManager");
     }
 
     /**
@@ -94,7 +94,7 @@ class KeyManagerServiceProvider extends ServiceProvider
     {
         $this->app->singleton(CipherSweet::class, function () {
 
-            $key = config('keymanager.encryption_key', '47f9c579776a486ce0592803c1174132ae190286dc87a498d938560f8bf31563');
+            $key = config('keymanager.encryption_key');
 
             if (empty($key)) {
                 throw new \RuntimeException(

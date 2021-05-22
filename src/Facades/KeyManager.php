@@ -12,6 +12,6 @@ class KeyManager extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'keymanager';
+        return 'key-manager';
     }
 }
