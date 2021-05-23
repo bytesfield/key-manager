@@ -2,10 +2,12 @@
 
 # Key Manager
 
-[![Latest Stable Version](https://poser.pugx.org/bytesfield/key-manager/v)](//packagist.org/packages/bytesfield/key-manager)
+[![Latest Stable Version](https://poser.pugx.org/bytesfield/key-manager/v/1.0-beta)](//packagist.org/packages/bytesfield/key-manager)
+[![License](https://poser.pugx.org/bytesfield/key-manager/license)](//packagist.org/packages/bytesfield/key-manager)
 [![StyleCI](https://github.styleci.io/repos/368198753/shield?branch=main)](https://github.styleci.io/repos/368198753?branch=main)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bytesfield/key-manager/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/bytesfield/key-manager/?branch=main)
 [![Build Status](https://scrutinizer-ci.com/g/bytesfield/key-manager/badges/build.png?b=main)](https://scrutinizer-ci.com/g/bytesfield/key-manager/build-status/main)
+[![Total Downloads](https://poser.pugx.org/bytesfield/key-manager/downloads)](//packagist.org/packages/bytesfield/key-manager)
 
 
 Key Manager is a Laravel Package for generating public and private key pairs storing, retrieving and authenticating using the private key.
@@ -23,7 +25,7 @@ composer require bytesfield/key-manager
 Or add the following line to the require block of your `composer.json` file.
 
 ```
-"bytesfield/key-manager": "1.0.*"
+"bytesfield/key-manager": "^1.0.*"
 ```
 
 You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
