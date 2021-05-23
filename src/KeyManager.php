@@ -10,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 class KeyManager implements KeyManagerInterface
 {
     use ApiResponse;
-    
     /**
      * Create a new Client with Api credentials.
      *

@@ -1,6 +1,7 @@
 <?php
 
 namespace Bytesfield\KeyManager;
+
 use Illuminate\Http\JsonResponse;
 
 interface KeyManagerInterface
