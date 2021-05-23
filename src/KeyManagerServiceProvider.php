@@ -44,7 +44,7 @@ class KeyManagerServiceProvider extends ServiceProvider
     public function boot()
     {
         //Loads Package Migration
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
         //Register Package Middleware
         $router = $this->app->make(Router::class);
@@ -54,14 +54,14 @@ class KeyManagerServiceProvider extends ServiceProvider
 
             //Publishes Package Config
             $this->publishes([
-                __DIR__ . '/config/keymanager.php' => config_path('keymanager.php'),
+                __DIR__.'/config/keymanager.php' => config_path('keymanager.php'),
             ], 'config');
 
             //Publishes Migrations
-            if (!class_exists('CreateKeyClientsTable') && !class_exists('CreateKeyApiCredentialsTable')) {
+            if (! class_exists('CreateKeyClientsTable') && ! class_exists('CreateKeyApiCredentialsTable')) {
                 $this->publishes([
-                    __DIR__ . '/database/migrations/2020_12_19_075709_create_key_clients_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '1' . '_create_key_clients_table.php'),
-                    __DIR__ . '/database/migrations/2020_12_19_075855_create_key_api_credentials_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '2' . '_create_key_api_credentials_table.php'),
+                    __DIR__.'/database/migrations/2020_12_19_075709_create_key_clients_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'1'.'_create_key_clients_table.php'),
+                    __DIR__.'/database/migrations/2020_12_19_075855_create_key_api_credentials_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'2'.'_create_key_api_credentials_table.php'),
                 ], 'migrations');
             }
 
