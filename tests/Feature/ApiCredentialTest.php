@@ -22,7 +22,7 @@ class ApiCredentialTest extends TestCase
         $client = $this->createNewClient();
 
         $response = $this->keyManager->getPrivateKey($client->getData()->data->id);
-        
+
         $this->assertTrue($response->getData()->status);
         $this->assertEquals(200, $response->getData()->statusCode);
     }

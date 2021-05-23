@@ -5,6 +5,7 @@ use Illuminate\Http\JsonResponse;
 
 interface KeyManagerInterface
 {
+  
     public function createClient(string $name, string $type, string $status = 'active'): JsonResponse;
 
     public function getPrivateKey(int $client_id): JsonResponse;

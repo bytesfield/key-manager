@@ -2,8 +2,8 @@
 
 namespace Bytesfield\KeyManager\Traits;
 
-use Illuminate\Http\JsonResponse;
 use Bytesfield\KeyManager\Classes\Errors;
+use Illuminate\Http\JsonResponse;
 
 trait ApiResponse
 {

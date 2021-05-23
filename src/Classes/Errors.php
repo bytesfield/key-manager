@@ -4,7 +4,6 @@ namespace Bytesfield\KeyManager\Classes;
 
 class Errors
 {
-
     public const CODE = [
         'OK' => 200,
         'NOT_FOUND' => 404,

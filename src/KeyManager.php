@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 
 class KeyManager implements KeyManagerInterface
 {
-  use ApiResponse;
+    use ApiResponse;
     /**
      * Create a new Client with Api credentials.
      *
@@ -21,7 +21,6 @@ class KeyManager implements KeyManagerInterface
     public function createClient(string $name, string $type, string $status = 'active'): JsonResponse
     {
         if (! in_array($status, [ApiCredential::STATUSES['ACTIVE'], ApiCredential::STATUSES['SUSPENDED']])) {
-
             return $this->error('Status must be either active or suspended');
         }
 
@@ -47,7 +46,6 @@ class KeyManager implements KeyManagerInterface
         $client = Client::with('apiCredential')->where('id', $client_id)->first();
 
         if (! $client) {
-
             return $this->error("No client found with id $client_id");
         }
 
@@ -156,5 +154,4 @@ class KeyManager implements KeyManagerInterface
 
         return $this->success('ApiCredential successfully activated');
     }
-
 }
