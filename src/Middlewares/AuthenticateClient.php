@@ -26,7 +26,6 @@ class AuthenticateClient
         return $next($request);
     }
 
-
     /**
      * Authenticate client from the request.
      *

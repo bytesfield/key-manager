@@ -39,11 +39,11 @@ class GenerateEncryptionKeyCommand extends Command
 
         if (! File::exists($this->envFile)) {
             exec('cp .env.example '.$this->envFile);
-            exec('echo "'. self::ENCRYPTION_KEY_NAME.'=">>'.$this->envFile);
+            exec('echo "'.self::ENCRYPTION_KEY_NAME.'=">>'.$this->envFile);
         }
 
         if (! config('keymanager.api_encryption_key')) {
-            exec('echo "'. ::ENCRYPTION_KEY_NAME.'=">>'.$this->envFile);
+            exec('echo "'.self::ENCRYPTION_KEY_NAME.'=">>'.$this->envFile);
         }
 
         $envContents = File::get($this->envFile);

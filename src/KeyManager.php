@@ -100,7 +100,7 @@ class KeyManager implements KeyManagerInterface
         $client = Client::find($client_id);
 
         if (! $client) {
-            return $this->response(false, 400,  "No client found with id $client_id");
+            return $this->response(false, 400, "No client found with id $client_id");
         }
 
         $client->update([
@@ -151,7 +151,6 @@ class KeyManager implements KeyManagerInterface
 
         return $this->response(true, 200, 'ApiCredential successfully activated');
     }
-
 
     /**
      * Response array.

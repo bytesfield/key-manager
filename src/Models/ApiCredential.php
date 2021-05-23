@@ -60,7 +60,6 @@ class ApiCredential extends Model
      */
     protected $blindIndex = 'secret_hash';
 
-
     /**
      * Get the client for the api key.
      *
