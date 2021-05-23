@@ -37,11 +37,11 @@ class AuthenticateClient
      */
     private function authenticateClientFromRequest(Request $request): Client
     {
-        if (!$privateKey = $request->header('api-auth-key')) {
+        if (! $privateKey = $request->header('api-auth-key')) {
             throw new AuthenticationException('API key in api-auth-key header is required.');
         }
 
-        if (!$apiCredential = ApiCredential::findByPrivateKey($privateKey)) {
+        if (! $apiCredential = ApiCredential::findByPrivateKey($privateKey)) {
             throw new AuthenticationException('Invalid API private key.');
         }
 

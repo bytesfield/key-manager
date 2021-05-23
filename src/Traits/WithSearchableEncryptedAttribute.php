@@ -112,7 +112,7 @@ trait WithSearchableEncryptedAttribute
      */
     protected function getBlindIndexName(): string
     {
-        return $this->getTable() . '_' . $this->getBlindIndexColumn() . '_blind_index';
+        return $this->getTable().'_'.$this->getBlindIndexColumn().'_blind_index';
     }
 
     /**

@@ -20,7 +20,7 @@ class ApiCredential extends Model
     protected $table = 'key_api_credentials';
 
     /**
-     * Statues for api credential
+     * Statues for api credential.
      */
     public const STATUSES = [
         'ACTIVE' => 'active',
@@ -28,17 +28,17 @@ class ApiCredential extends Model
     ];
 
     /**
-     * Public key prefix
+     * Public key prefix.
      */
     public const PUBLIC_KEY_PREFIX = 'api_key_pub';
 
     /**
-     * Private key prefix
+     * Private key prefix.
      */
     public const PRIVATE_KEY_PREFIX = 'api_key_prv';
 
     /**
-     * The hidden columns
+     * The hidden columns.
      *
      * @var string[]
      */
@@ -47,14 +47,14 @@ class ApiCredential extends Model
     ];
 
     /**
-     * The encrypted field or column
+     * The encrypted field or column.
      *
      * @var string
      */
     protected $encrypted = 'private_key';
 
     /**
-     * The blind index field or column
+     * The blind index field or column.
      *
      * @var string
      */
@@ -62,7 +62,7 @@ class ApiCredential extends Model
 
 
     /**
-     * Get the client for the api key
+     * Get the client for the api key.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -72,7 +72,7 @@ class ApiCredential extends Model
     }
 
     /**
-     * Sets the value for private key column
+     * Sets the value for private key column.
      *
      * @param string $key
      *
@@ -84,7 +84,7 @@ class ApiCredential extends Model
     }
 
     /**
-     * Sets the value secret hash column
+     * Sets the value secret hash column.
      *
      * @param string|null $hash
      *
@@ -100,7 +100,7 @@ class ApiCredential extends Model
     }
 
     /**
-     * Get the value for private key column
+     * Get the value for private key column.
      *
      * @param string $encryptedKey
      *
@@ -112,7 +112,7 @@ class ApiCredential extends Model
     }
 
     /**
-     * Add where clause for status equals active
+     * Add where clause for status equals active.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      *
@@ -124,7 +124,7 @@ class ApiCredential extends Model
     }
 
     /**
-     * Add where clause for status equals active
+     * Add where clause for status equals active.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      *
@@ -136,7 +136,7 @@ class ApiCredential extends Model
     }
 
     /**
-     * Find client active api keys by private key
+     * Find client active api keys by private key.
      *
      * @param string $privateKey
      *
@@ -152,7 +152,7 @@ class ApiCredential extends Model
     }
 
     /**
-     * Find client suspended api keys by private key
+     * Find client suspended api keys by private key.
      *
      * @param string $privateKey
      *
@@ -168,7 +168,7 @@ class ApiCredential extends Model
     }
 
     /**
-     * Find client api keys by private key
+     * Find client api keys by private key.
      *
      * @param string $privateKey
      *
@@ -193,8 +193,8 @@ class ApiCredential extends Model
         [$publicKey, $privateKey] = self::generatePublicPrivateKeys();
 
         return [
-            'public_key' => self::PUBLIC_KEY_PREFIX . '_' . $publicKey,
-            'private_key' => self::PRIVATE_KEY_PREFIX . '_' . $privateKey,
+            'public_key' => self::PUBLIC_KEY_PREFIX.'_'.$publicKey,
+            'private_key' => self::PRIVATE_KEY_PREFIX.'_'.$privateKey,
             'secret_hash' => null,
             'status' => self::STATUSES['ACTIVE'],
         ];

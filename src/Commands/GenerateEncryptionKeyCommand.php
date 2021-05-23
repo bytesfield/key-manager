@@ -37,13 +37,13 @@ class GenerateEncryptionKeyCommand extends Command
             $this->envFile = '.env.testing';
         }
 
-        if (!File::exists($this->envFile)) {
-            exec('cp .env.example ' . $this->envFile);
-            exec('echo "' . self::ENCRYPTION_KEY_NAME . '=">>' . $this->envFile);
+        if (! File::exists($this->envFile)) {
+            exec('cp .env.example '.$this->envFile);
+            exec('echo "'. self::ENCRYPTION_KEY_NAME.'=">>'.$this->envFile);
         }
 
-        if (!config('keymanager.api_encryption_key')) {
-            exec('echo "' . self::ENCRYPTION_KEY_NAME . '=">>' . $this->envFile);
+        if (! config('keymanager.api_encryption_key')) {
+            exec('echo "'. ::ENCRYPTION_KEY_NAME.'=">>'.$this->envFile);
         }
 
         $envContents = File::get($this->envFile);
@@ -53,7 +53,7 @@ class GenerateEncryptionKeyCommand extends Command
         $envKeyValueToReplace = collect($envVariablesArray)->filter($filter)->first();
 
         $newKey = \bin2hex(\random_bytes(32));
-        $newEncryptionKey = self::ENCRYPTION_KEY_NAME . '=' . $newKey;
+        $newEncryptionKey = self::ENCRYPTION_KEY_NAME.'='.$newKey;
 
         $newContents = Str::replaceFirst($envKeyValueToReplace, $newEncryptionKey, $envContents);
 

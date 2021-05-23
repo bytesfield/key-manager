@@ -7,7 +7,6 @@ use Bytesfield\KeyManager\Models\Client;
 
 class KeyManager implements KeyManagerInterface
 {
-
     /**
      * Create a new Client with Api credentials.
      *
@@ -18,7 +17,7 @@ class KeyManager implements KeyManagerInterface
      */
     public function createClient(string $name, string $type, string $status = 'active'): array
     {
-        if (!in_array($status, [ApiCredential::STATUSES['ACTIVE'], ApiCredential::STATUSES['SUSPENDED']])) {
+        if (! in_array($status, [ApiCredential::STATUSES['ACTIVE'], ApiCredential::STATUSES['SUSPENDED']])) {
             return $this->response(false, 400, 'Status must be either active or suspended');
         }
 
@@ -33,7 +32,6 @@ class KeyManager implements KeyManagerInterface
         return $this->response(true, 200, 'Client created successfully', $client->toArray());
     }
 
-
     /**
      * Get client's private key.
      *
@@ -44,7 +42,7 @@ class KeyManager implements KeyManagerInterface
     {
         $client = Client::with('apiCredential')->where('id', $client_id)->first();
 
-        if (!$client) {
+        if (! $client) {
             return $this->response(false, 400, "No client found with id $client_id");
         }
 
@@ -61,7 +59,7 @@ class KeyManager implements KeyManagerInterface
     {
         $key = ApiCredential::where('key_client_id', $client_id)->first();
 
-        if (!$key) {
+        if (! $key) {
             return $this->response(false, 400, 'Client information not found');
         }
 
@@ -80,7 +78,7 @@ class KeyManager implements KeyManagerInterface
     {
         $client = Client::find($client_id);
 
-        if (!$client) {
+        if (! $client) {
             return $this->response(false, 400, "No client found with id $client_id");
         }
 
@@ -101,7 +99,7 @@ class KeyManager implements KeyManagerInterface
     {
         $client = Client::find($client_id);
 
-        if (!$client) {
+        if (! $client) {
             return $this->response(false, 400,  "No client found with id $client_id");
         }
 
@@ -122,7 +120,7 @@ class KeyManager implements KeyManagerInterface
     {
         $key = ApiCredential::where('key_client_id', $client_id)->first();
 
-        if (!$key) {
+        if (! $key) {
             return $this->response(false, 400, 'Client information not found');
         }
 
@@ -143,7 +141,7 @@ class KeyManager implements KeyManagerInterface
     {
         $key = ApiCredential::where('key_client_id', $client_id)->first();
 
-        if (!$key) {
+        if (! $key) {
             return $this->response(false, 400, 'Client information not found');
         }
 
@@ -172,7 +170,7 @@ class KeyManager implements KeyManagerInterface
             'message' => $message,
         ];
 
-        if (!empty($data)) {
+        if (! empty($data)) {
             $responseData['data'] = $data;
         }
 

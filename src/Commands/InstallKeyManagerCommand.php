@@ -36,7 +36,7 @@ class InstallKeyManagerCommand extends Command
             '--tag' => 'config',
         ]);
 
-        if (!class_exists('CreateKeyClientsTable')  && !class_exists('CreateKeyApiCredentialsTable')) {
+        if (! class_exists('CreateKeyClientsTable')  && ! class_exists('CreateKeyApiCredentialsTable')) {
             $this->call('vendor:publish', [
                 '--provider' => "Bytesfield\KeyManager\KeyManagerServiceProvider",
                 '--tag' => 'migrations',

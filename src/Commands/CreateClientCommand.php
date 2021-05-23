@@ -65,6 +65,6 @@ class CreateClientCommand extends Command
 
         $key = $this->manager->getPrivateKey($client['data']['id']);
 
-        $this->info('client key: ' . $key['data']['key']);
+        $this->info('client key: '.$key['data']['key']);
     }
 }
