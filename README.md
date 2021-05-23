@@ -4,7 +4,9 @@
 
 [![Latest Stable Version](https://poser.pugx.org/bytesfield/key-manager/v)](//packagist.org/packages/bytesfield/key-manager)
 [![StyleCI](https://github.styleci.io/repos/368198753/shield?branch=main)](https://github.styleci.io/repos/368198753?branch=main)
-[![License](https://poser.pugx.org/bytesfield/key-manager/license)](//packagist.org/packages/bytesfield/key-manager)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bytesfield/key-manager/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/bytesfield/key-manager/?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/bytesfield/key-manager/badges/build.png?b=main)](https://scrutinizer-ci.com/g/bytesfield/key-manager/build-status/main)
+
 
 Key Manager is a Laravel Package for generating public and private key pairs storing, retrieving and authenticating using the private key.
 
