@@ -2,10 +2,9 @@
 
 namespace Bytesfield\KeyManager\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Bytesfield\KeyManager\Models\ApiCredential;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Client extends Model
 {
@@ -16,7 +15,7 @@ class Client extends Model
     protected $table = 'key_clients';
 
     /**
-     * Get the api key for the related client
+     * Get the api key for the related client.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

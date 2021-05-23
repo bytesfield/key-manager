@@ -2,14 +2,13 @@
 
 namespace Bytesfield\KeyManager\Tests;
 
-use Mockery as m;
 use Bytesfield\KeyManager\KeyManager;
-use Bytesfield\KeyManager\Models\ApiCredential;
 use Bytesfield\KeyManager\KeyManagerServiceProvider;
+use Bytesfield\KeyManager\Models\ApiCredential;
+use Mockery as m;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
-
     protected function setUp(): void
     {
         parent::setUp();

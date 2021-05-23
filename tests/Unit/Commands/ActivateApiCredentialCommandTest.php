@@ -2,8 +2,8 @@
 
 namespace Bytesfield\KeyManager\Tests\Unit\Commands;
 
-use Bytesfield\KeyManager\Tests\TestCase;
 use Bytesfield\KeyManager\Models\ApiCredential;
+use Bytesfield\KeyManager\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ActivateApiCredentialCommandTest extends TestCase
@@ -22,7 +22,7 @@ class ActivateApiCredentialCommandTest extends TestCase
 
         $this->assertDatabaseHas('key_api_credentials', [
             'key_client_id' => $clientId,
-            'status' => ApiCredential::STATUSES['ACTIVE']
+            'status' => ApiCredential::STATUSES['ACTIVE'],
         ]);
     }
 }

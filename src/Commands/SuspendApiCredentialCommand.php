@@ -2,8 +2,8 @@
 
 namespace Bytesfield\KeyManager\Commands;
 
-use Illuminate\Console\Command;
 use Bytesfield\KeyManager\KeyManagerInterface;
+use Illuminate\Console\Command;
 
 class SuspendApiCredentialCommand extends Command
 {
@@ -22,14 +22,13 @@ class SuspendApiCredentialCommand extends Command
     protected $description = 'Command to suspend a client credential';
 
     /**
-     * The KeyManagerInterface
+     * The KeyManagerInterface.
      *
-     * @var KeyManagerInterface $manager
+     * @var KeyManagerInterface
      */
     private $manager;
 
     /**
-     *
      * @param KeyManagerInterface $manager
      * @return void
      */
@@ -48,7 +47,7 @@ class SuspendApiCredentialCommand extends Command
     {
         $key = $this->manager->suspendApiCredential($this->argument('clientId'));
 
-        $this->info($key['status'] == true ? 'Success' : "Failed");
+        $this->info($key['status'] == true ? 'Success' : 'Failed');
 
         $this->info($key['message']);
     }

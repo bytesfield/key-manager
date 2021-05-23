@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Bytesfield\KeyManager\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -107,7 +106,7 @@ trait WithSearchableEncryptedAttribute
     }
 
     /**
-     * Get the name of the build index. e.g api_keys_encrypted_hash_blind_index
+     * Get the name of the build index. e.g api_keys_encrypted_hash_blind_index.
      *
      * @return string
      */

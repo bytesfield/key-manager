@@ -2,9 +2,8 @@
 
 namespace Bytesfield\KeyManager\Commands;
 
-use Illuminate\Console\Command;
-
 use Bytesfield\KeyManager\KeyManagerInterface;
+use Illuminate\Console\Command;
 
 class ChangeKeysCommand extends Command
 {
@@ -23,18 +22,16 @@ class ChangeKeysCommand extends Command
     protected $description = 'Command to change client public/private keys';
 
     /**
-     * The KeyManagerInterface
+     * The KeyManagerInterface.
      *
-     * @var KeyManagerInterface $manager
+     * @var KeyManagerInterface
      */
     private $manager;
 
     /**
-     *
      * @param KeyManagerInterface $manager
      * @return void
      */
-
     public function __construct(KeyManagerInterface $manager)
     {
         $this->manager = $manager;
@@ -50,7 +47,7 @@ class ChangeKeysCommand extends Command
     public function handle(): void
     {
         $key = $this->manager->changeKeys($this->argument('clientId'));
-        $this->info($key['status'] == true ? 'Success' : "Failed");
+        $this->info($key['status'] == true ? 'Success' : 'Failed');
 
         $this->info($key['message']);
 

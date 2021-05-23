@@ -2,8 +2,8 @@
 
 namespace Bytesfield\KeyManager\Tests\Unit\Commands;
 
-use Bytesfield\KeyManager\Tests\TestCase;
 use Bytesfield\KeyManager\Models\ApiCredential;
+use Bytesfield\KeyManager\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ChangeKeysCommandTest extends TestCase

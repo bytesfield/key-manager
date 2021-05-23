@@ -3,7 +3,6 @@
 namespace Bytesfield\KeyManager\Tests\Unit\Commands;
 
 use Bytesfield\KeyManager\Tests\TestCase;
-use Bytesfield\KeyManager\Models\ApiCredential;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class InstallKeyManagerCommandTest extends TestCase
@@ -12,8 +11,7 @@ class InstallKeyManagerCommandTest extends TestCase
 
     public function testCommandCanInstallKeyManager(): void
     {
-
-        $this->artisan("key-manager:install")
+        $this->artisan('key-manager:install')
             ->expectsOutput('Key Manager Installed Successfully.')
             ->assertExitCode(0);
     }

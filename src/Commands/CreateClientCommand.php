@@ -2,9 +2,8 @@
 
 namespace Bytesfield\KeyManager\Commands;
 
-use Illuminate\Console\Command;
-
 use Bytesfield\KeyManager\KeyManagerInterface;
+use Illuminate\Console\Command;
 
 class CreateClientCommand extends Command
 {
@@ -29,14 +28,13 @@ class CreateClientCommand extends Command
      */
 
     /**
-     * The KeyManagerInterface
+     * The KeyManagerInterface.
      *
-     * @var KeyManagerInterface $manager
+     * @var KeyManagerInterface
      */
     private $manager;
 
     /**
-     *
      * @param KeyManagerInterface $manager
      */
     public function __construct(KeyManagerInterface $manager)
@@ -67,6 +65,6 @@ class CreateClientCommand extends Command
 
         $key = $this->manager->getPrivateKey($client['data']['id']);
 
-        $this->info("client key: " . $key['data']['key']);
+        $this->info('client key: ' . $key['data']['key']);
     }
 }

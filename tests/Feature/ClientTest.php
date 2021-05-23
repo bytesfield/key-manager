@@ -3,8 +3,8 @@
 namespace Bytesfield\KeyManager\Tests\Unit;
 
 use Bytesfield\KeyManager\Models\ApiCredential;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Bytesfield\KeyManager\Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ClientTest extends TestCase
 {
@@ -37,7 +37,6 @@ class ClientTest extends TestCase
     public function testItCanSuspendClientThatExist()
     {
         $client = $this->createNewClient();
-
 
         $response = $this->keyManager->suspendClient($client['data']['id']);
 

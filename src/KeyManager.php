@@ -2,45 +2,42 @@
 
 namespace Bytesfield\KeyManager;
 
-use Bytesfield\KeyManager\Models\Client;
-use Bytesfield\KeyManager\KeyManagerInterface;
 use Bytesfield\KeyManager\Models\ApiCredential;
+use Bytesfield\KeyManager\Models\Client;
 
 class KeyManager implements KeyManagerInterface
 {
 
     /**
-     * Create a new Client with Api credentials
+     * Create a new Client with Api credentials.
      *
      * @param string $name
      * @param string $type
      * @param string $status
-     * 
      * @return array
      */
-    public function createClient(string $name, string $type, string $status = "active"): array
+    public function createClient(string $name, string $type, string $status = 'active'): array
     {
         if (!in_array($status, [ApiCredential::STATUSES['ACTIVE'], ApiCredential::STATUSES['SUSPENDED']])) {
-            return $this->response(false, 400, "Status must be either active or suspended");
+            return $this->response(false, 400, 'Status must be either active or suspended');
         }
 
         $client = Client::create([
             'name' => $name,
             'type' => $type,
-            'status' => $status
+            'status' => $status,
         ]);
 
         $client->apiCredential()->create(ApiCredential::generateKeyPairArray());
 
-        return $this->response(true, 200, "Client created successfully", $client->toArray());
+        return $this->response(true, 200, 'Client created successfully', $client->toArray());
     }
 
 
     /**
-     * Get client's private key
+     * Get client's private key.
      *
      * @param int $client_id
-     * 
      * @return array
      */
     public function getPrivateKey(int $client_id): array
@@ -51,14 +48,13 @@ class KeyManager implements KeyManagerInterface
             return $this->response(false, 400, "No client found with id $client_id");
         }
 
-        return $this->response(true, 200, "Key retrieved successfully", ["key" => $client->apiCredential->private_key]);
+        return $this->response(true, 200, 'Key retrieved successfully', ['key' => $client->apiCredential->private_key]);
     }
 
     /**
-     * Change Client's public and private keys
+     * Change Client's public and private keys.
      *
      * @param int $client_id
-     * 
      * @return array
      */
     public function changeKeys(int $client_id): array
@@ -66,19 +62,18 @@ class KeyManager implements KeyManagerInterface
         $key = ApiCredential::where('key_client_id', $client_id)->first();
 
         if (!$key) {
-            return $this->response(false, 400, "Client information not found");
+            return $this->response(false, 400, 'Client information not found');
         }
 
         $key->update(ApiCredential::generateKeyPairArray());
 
-        return $this->response(true, 200, "Api Keys successfully changed", ["key" => $key->private_key]);
+        return $this->response(true, 200, 'Api Keys successfully changed', ['key' => $key->private_key]);
     }
 
     /**
-     * Suspend Client's Account
+     * Suspend Client's Account.
      *
      * @param int $client_id
-     * 
      * @return array
      */
     public function suspendClient(int $client_id): array
@@ -90,17 +85,16 @@ class KeyManager implements KeyManagerInterface
         }
 
         $client->update([
-            'status' => ApiCredential::STATUSES['SUSPENDED']
+            'status' => ApiCredential::STATUSES['SUSPENDED'],
         ]);
 
-        return $this->response(true, 200, "Client successfully suspended");
+        return $this->response(true, 200, 'Client successfully suspended');
     }
 
     /**
-     * Activate Client's Account
+     * Activate Client's Account.
      *
      * @param int $client_id
-     * 
      * @return array
      */
     public function activateClient(int $client_id): array
@@ -112,17 +106,16 @@ class KeyManager implements KeyManagerInterface
         }
 
         $client->update([
-            'status' => ApiCredential::STATUSES['ACTIVE']
+            'status' => ApiCredential::STATUSES['ACTIVE'],
         ]);
 
-        return $this->response(true, 200, "Client successfully activated");
+        return $this->response(true, 200, 'Client successfully activated');
     }
 
     /**
-     * Suspend Client's Api Credential
+     * Suspend Client's Api Credential.
      *
      * @param int $client_id
-     * 
      * @return array
      */
     public function suspendApiCredential(int $client_id): array
@@ -130,21 +123,20 @@ class KeyManager implements KeyManagerInterface
         $key = ApiCredential::where('key_client_id', $client_id)->first();
 
         if (!$key) {
-            return $this->response(false, 400, "Client information not found");
+            return $this->response(false, 400, 'Client information not found');
         }
 
         $key->update([
-            'status' => ApiCredential::STATUSES['SUSPENDED']
+            'status' => ApiCredential::STATUSES['SUSPENDED'],
         ]);
 
-        return $this->response(true, 200, "ApiCredential successfully suspended");
+        return $this->response(true, 200, 'ApiCredential successfully suspended');
     }
 
     /**
-     * Activate Client's Api Credential
+     * Activate Client's Api Credential.
      *
      * @param int $client_id
-     * 
      * @return array
      */
     public function activateApiCredential(int $client_id): array
@@ -152,33 +144,32 @@ class KeyManager implements KeyManagerInterface
         $key = ApiCredential::where('key_client_id', $client_id)->first();
 
         if (!$key) {
-            return $this->response(false, 400, "Client information not found");
+            return $this->response(false, 400, 'Client information not found');
         }
 
         $key->update([
-            'status' => ApiCredential::STATUSES['ACTIVE']
+            'status' => ApiCredential::STATUSES['ACTIVE'],
         ]);
 
-        return $this->response(true, 200, "ApiCredential successfully activated");
+        return $this->response(true, 200, 'ApiCredential successfully activated');
     }
 
 
     /**
-     * Response array
+     * Response array.
      *
-     * @param boolean $status
+     * @param bool $status
      * @param int $statusCode
      * @param string $message
      * @param array $data
-     * 
      * @return array
      */
     private function response(bool $status, int $statusCode, string $message, array $data = []): array
     {
         $responseData = [
-            "status" => $status,
+            'status' => $status,
             'statusCode' => $statusCode,
-            "message" => $message,
+            'message' => $message,
         ];
 
         if (!empty($data)) {

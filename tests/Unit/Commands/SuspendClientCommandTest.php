@@ -2,8 +2,8 @@
 
 namespace Bytesfield\KeyManager\Tests\Unit\Commands;
 
-use Bytesfield\KeyManager\Tests\TestCase;
 use Bytesfield\KeyManager\Models\ApiCredential;
+use Bytesfield\KeyManager\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SuspendClientCommandTest extends TestCase
@@ -24,7 +24,7 @@ class SuspendClientCommandTest extends TestCase
             'id' => $clientId,
             'name' => $client['data']['name'],
             'type' => $client['data']['type'],
-            'status' => ApiCredential::STATUSES['SUSPENDED']
+            'status' => ApiCredential::STATUSES['SUSPENDED'],
         ]);
     }
 }

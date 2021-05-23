@@ -7,7 +7,7 @@ use Bytesfield\KeyManager\Tests\TestCase;
 class KeyManagerServiceProviderTest extends TestCase
 {
     /**
-     * Tests if Service Provider Binds alias "keymanager" to \Bytesfield\KeyManager\KeyManager
+     * Tests if Service Provider Binds alias "keymanager" to \Bytesfield\KeyManager\KeyManager.
      */
     public function testIsBound()
     {
@@ -15,11 +15,11 @@ class KeyManagerServiceProviderTest extends TestCase
     }
 
     /**
-     * Test if Service Provider returns \KeyManager as alias for \Bytesfield\KeyManager\KeyManager
+     * Test if Service Provider returns \KeyManager as alias for \Bytesfield\KeyManager\KeyManager.
      */
     public function testHasAliased()
     {
-        $alias = "Bytesfield\KeyManager\KeyManager";
+        $alias = 'Bytesfield\KeyManager\KeyManager';
 
         $this->assertTrue($this->app->isAlias($alias));
         $this->assertEquals('key-manager', $this->app->getAlias($alias));

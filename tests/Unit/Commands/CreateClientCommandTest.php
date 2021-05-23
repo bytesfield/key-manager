@@ -18,7 +18,7 @@ class CreateClientCommandTest extends TestCase
 
         $this->assertDatabaseHas('key_clients', [
             'name' => 'Bytesfield',
-            'type' => 'user'
+            'type' => 'user',
         ]);
     }
 }

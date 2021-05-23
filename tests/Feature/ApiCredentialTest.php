@@ -27,7 +27,6 @@ class ApiCredentialTest extends TestCase
         $this->assertEquals(200, $response['statusCode']);
     }
 
-
     public function testItCanNotChangeKeysIfClientDoesNotExist()
     {
         $response = $this->keyManager->changeKeys(20);
@@ -35,6 +34,7 @@ class ApiCredentialTest extends TestCase
         $this->assertFalse($response['status']);
         $this->assertEquals(400, $response['statusCode']);
     }
+
     public function testItCanChangeKeysIfClientExist()
     {
         $client = $this->createNewClient();

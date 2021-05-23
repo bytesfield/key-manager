@@ -2,9 +2,8 @@
 
 namespace Bytesfield\KeyManager\Commands;
 
-use Illuminate\Console\Command;
-
 use Bytesfield\KeyManager\KeyManagerInterface;
+use Illuminate\Console\Command;
 
 class GetApiKeyCommand extends Command
 {
@@ -23,14 +22,13 @@ class GetApiKeyCommand extends Command
     protected $description = 'Command to get clients private key';
 
     /**
-     * The KeyManagerInterface
+     * The KeyManagerInterface.
      *
-     * @var KeyManagerInterface $manager
+     * @var KeyManagerInterface
      */
     private $manager;
 
     /**
-     *
      * @param KeyManagerInterface $manager
      * @return void
      */
@@ -49,7 +47,7 @@ class GetApiKeyCommand extends Command
     {
         $key = $this->manager->getPrivateKey($this->argument('clientId'));
 
-        $this->info($key['status'] == true ? 'Success' : "Failed");
+        $this->info($key['status'] == true ? 'Success' : 'Failed');
 
         $this->info($key['message']);
 
