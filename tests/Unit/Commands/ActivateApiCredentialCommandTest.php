@@ -13,7 +13,7 @@ class ActivateApiCredentialCommandTest extends TestCase
     public function testCommandCanActivateApiCredential(): void
     {
         $client = $this->createNewClient();
-        $clientId = $client['data']['id'];
+        $clientId = $client->getData()->data->id;
 
         $this->artisan("client:activate-key {$clientId}")
             ->expectsOutput('Success')

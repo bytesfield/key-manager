@@ -13,7 +13,7 @@ class SuspendApiCredentialCommandTest extends TestCase
     public function testCommandCanSuspendApiCredential(): void
     {
         $client = $this->createNewClient();
-        $clientId = $client['data']['id'];
+        $clientId = $client->getData()->data->id;
 
         $this->artisan("client:suspend-key {$clientId}")
             ->expectsOutput('Success')

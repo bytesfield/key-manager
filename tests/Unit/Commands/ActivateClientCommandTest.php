@@ -13,7 +13,7 @@ class ActivateClientCommandTest extends TestCase
     public function testCommandCanActivateAClient(): void
     {
         $client = $this->createNewClient();
-        $clientId = $client['data']['id'];
+        $clientId = $client->getData()->data->id;
 
         $this->artisan("client:activate {$clientId}")
             ->expectsOutput('Success')
@@ -22,8 +22,8 @@ class ActivateClientCommandTest extends TestCase
 
         $this->assertDatabaseHas('key_clients', [
             'id' => $clientId,
-            'name' => $client['data']['name'],
-            'type' => $client['data']['type'],
+            'name' => $client->getData()->data->name,
+            'type' => $client->getData()->data->type,
             'status' => ApiCredential::STATUSES['ACTIVE'],
         ]);
     }

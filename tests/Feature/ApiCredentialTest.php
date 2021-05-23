@@ -13,71 +13,71 @@ class ApiCredentialTest extends TestCase
     {
         $response = $this->keyManager->getPrivateKey(20);
 
-        $this->assertFalse($response['status']);
-        $this->assertEquals(400, $response['statusCode']);
+        $this->assertFalse($response->getData()->status);
+        $this->assertEquals(409, $response->getData()->statusCode);
     }
 
     public function testItCanGetPrivateKeyIfClientExist()
     {
         $client = $this->createNewClient();
 
-        $response = $this->keyManager->getPrivateKey($client['data']['id']);
-
-        $this->assertTrue($response['status']);
-        $this->assertEquals(200, $response['statusCode']);
+        $response = $this->keyManager->getPrivateKey($client->getData()->data->id);
+        
+        $this->assertTrue($response->getData()->status);
+        $this->assertEquals(200, $response->getData()->statusCode);
     }
 
     public function testItCanNotChangeKeysIfClientDoesNotExist()
     {
         $response = $this->keyManager->changeKeys(20);
 
-        $this->assertFalse($response['status']);
-        $this->assertEquals(400, $response['statusCode']);
+        $this->assertFalse($response->getData()->status);
+        $this->assertEquals(409, $response->getData()->statusCode);
     }
 
     public function testItCanChangeKeysIfClientExist()
     {
         $client = $this->createNewClient();
 
-        $response = $this->keyManager->changeKeys($client['data']['id']);
+        $response = $this->keyManager->changeKeys($client->getData()->data->id);
 
-        $this->assertTrue($response['status']);
-        $this->assertEquals(200, $response['statusCode']);
+        $this->assertTrue($response->getData()->status);
+        $this->assertEquals(200, $response->getData()->statusCode);
     }
 
     public function testItCanNotSuspendCredentialIfClientDoesNotExist()
     {
         $response = $this->keyManager->suspendApiCredential(20);
 
-        $this->assertFalse($response['status']);
-        $this->assertEquals(400, $response['statusCode']);
+        $this->assertFalse($response->getData()->status);
+        $this->assertEquals(409, $response->getData()->statusCode);
     }
 
     public function testItCanSuspendCredentialIfClientExist()
     {
         $client = $this->createNewClient();
 
-        $response = $this->keyManager->suspendApiCredential($client['data']['id']);
+        $response = $this->keyManager->suspendApiCredential($client->getData()->data->id);
 
-        $this->assertTrue($response['status']);
-        $this->assertEquals(200, $response['statusCode']);
+        $this->assertTrue($response->getData()->status);
+        $this->assertEquals(200, $response->getData()->statusCode);
     }
 
     public function testItCanNotActivateCredentialIfClientDoesNotExist()
     {
         $response = $this->keyManager->activateApiCredential(20);
 
-        $this->assertFalse($response['status']);
-        $this->assertEquals(400, $response['statusCode']);
+        $this->assertFalse($response->getData()->status);
+        $this->assertEquals(409, $response->getData()->statusCode);
     }
 
     public function testItCanActivateCredentialIfClientExist()
     {
         $client = $this->createNewClient();
 
-        $response = $this->keyManager->activateApiCredential($client['data']['id']);
+        $response = $this->keyManager->activateApiCredential($client->getData()->data->id);
 
-        $this->assertTrue($response['status']);
-        $this->assertEquals(200, $response['statusCode']);
+        $this->assertTrue($response->getData()->status);
+        $this->assertEquals(200, $response->getData()->statusCode);
     }
 }

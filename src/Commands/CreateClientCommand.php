@@ -59,12 +59,12 @@ class CreateClientCommand extends Command
 
         $client = $this->manager->createClient($name, $type, $status);
 
-        $this->info($client['status'] == true ? 'Success' : 'Failed');
+        $this->info($client->getData()->status == true ? 'Success' : 'Failed');
 
-        $this->info($client['message']);
+        $this->info($client->getData()->message);
 
-        $key = $this->manager->getPrivateKey($client['data']['id']);
+        $key = $this->manager->getPrivateKey($client->getData()->data->id);
 
-        $this->info('client key: '.$key['data']['key']);
+        $this->info('client key: '.$key->getData()->data->key);
     }
 }

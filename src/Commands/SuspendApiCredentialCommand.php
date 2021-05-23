@@ -47,8 +47,8 @@ class SuspendApiCredentialCommand extends Command
     {
         $key = $this->manager->suspendApiCredential($this->argument('clientId'));
 
-        $this->info($key['status'] == true ? 'Success' : 'Failed');
+        $this->info($key->getData()->status == true ? 'Success' : 'Failed');
 
-        $this->info($key['message']);
+        $this->info($key->getData()->message);
     }
 }

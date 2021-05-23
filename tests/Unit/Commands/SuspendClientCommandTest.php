@@ -13,7 +13,7 @@ class SuspendClientCommandTest extends TestCase
     public function testCommandCanSuspendAClient(): void
     {
         $client = $this->createNewClient();
-        $clientId = $client['data']['id'];
+        $clientId = $client->getData()->data->id;
 
         $this->artisan("client:suspend {$clientId}")
             ->expectsOutput('Success')
@@ -22,8 +22,8 @@ class SuspendClientCommandTest extends TestCase
 
         $this->assertDatabaseHas('key_clients', [
             'id' => $clientId,
-            'name' => $client['data']['name'],
-            'type' => $client['data']['type'],
+            'name' => $client->getData()->data->name,
+            'type' => $client->getData()->data->type,
             'status' => ApiCredential::STATUSES['SUSPENDED'],
         ]);
     }

@@ -47,10 +47,10 @@ class ChangeKeysCommand extends Command
     public function handle(): void
     {
         $key = $this->manager->changeKeys($this->argument('clientId'));
-        $this->info($key['status'] == true ? 'Success' : 'Failed');
+        $this->info($key->getData()->status == true ? 'Success' : 'Failed');
 
-        $this->info($key['message']);
+        $this->info($key->getData()->message);
 
-        $this->info($key['data']['key']);
+        $this->info($key->getData()->data->key);
     }
 }

@@ -13,7 +13,7 @@ class GetApiKeyCommandTest extends TestCase
     public function testCommandCanGetApiKey(): void
     {
         $client = $this->createNewClient();
-        $clientId = $client['data']['id'];
+        $clientId = $client->getData()->data->id;
 
         $credential = ApiCredential::firstWhere('key_client_id', $clientId);
         $privateKey = $credential->private_key;

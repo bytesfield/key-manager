@@ -47,8 +47,8 @@ class SuspendClientCommand extends Command
     {
         $key = $this->manager->suspendClient($this->argument('clientId'));
 
-        $this->info($key['status'] == true ? 'Success' : 'Failed');
+        $this->info($key->getData()->status == true ? 'Success' : 'Failed');
 
-        $this->info($key['message']);
+        $this->info($key->getData()->message);
     }
 }

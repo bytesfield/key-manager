@@ -12,6 +12,7 @@ use Bytesfield\KeyManager\Commands\InstallKeyManagerCommand;
 use Bytesfield\KeyManager\Commands\SuspendApiCredentialCommand;
 use Bytesfield\KeyManager\Commands\SuspendClientCommand;
 use Bytesfield\KeyManager\Middlewares\AuthenticateClient;
+use Bytesfield\KeyManager\Exceptions\Handler;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use ParagonIE\CipherSweet\Backend\ModernCrypto;
@@ -29,6 +30,13 @@ class KeyManagerServiceProvider extends ServiceProvider
     {
         $this->registerCipherSweet();
         $this->app->singleton(KeyManagerInterface::class, KeyManager::class);
+
+        $this->app->singleton(
+            \Illuminate\Contracts\Debug\ExceptionHandler::class,
+            Handler::class
+        );
+
+        $this->mergeConfigFrom(__DIR__.'/config/keymanager.php', 'keymanager');
 
         $this->app->bind('key-manager', function ($app) {
             return new KeyManager($app->request);
@@ -58,7 +66,7 @@ class KeyManagerServiceProvider extends ServiceProvider
             ], 'config');
 
             //Publishes Migrations
-            if (! class_exists('CreateKeyClientsTable') && ! class_exists('CreateKeyApiCredentialsTable')) {
+            if (!class_exists('CreateKeyClientsTable') && !class_exists('CreateKeyApiCredentialsTable')) {
                 $this->publishes([
                     __DIR__.'/database/migrations/2020_12_19_075709_create_key_clients_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'1'.'_create_key_clients_table.php'),
                     __DIR__.'/database/migrations/2020_12_19_075855_create_key_api_credentials_table.php.stub' => database_path('migrations/'.date('Y_m_d_His', time()).'2'.'_create_key_api_credentials_table.php'),
@@ -89,7 +97,6 @@ class KeyManagerServiceProvider extends ServiceProvider
     private function registerCipherSweet(): void
     {
         $this->app->singleton(CipherSweet::class, function () {
-            //$key = '47f9c579776a486ce0592803c1174132ae190286dc87a498d938560f8bf31563';
             $key = config('keymanager.encryption_key');
 
             if (empty($key)) {
