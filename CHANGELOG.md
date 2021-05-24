@@ -17,3 +17,9 @@ v1.0.beta
 v1.0.1
 
 -   Initial Version Release
+
+## 2021-24-05
+v1.0.2
+
+-   Fixed failed Tests
+-   Updated config
