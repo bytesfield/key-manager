@@ -97,7 +97,7 @@ class KeyManagerServiceProvider extends ServiceProvider
     private function registerCipherSweet(): void
     {
         $this->app->singleton(CipherSweet::class, function () {
-            $key = config('keymanager.encryption_key');
+            $key = config('keymanager.api_encryption_key');
 
             if (empty($key)) {
                 throw new \RuntimeException(
