@@ -38,8 +38,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->loadMigrations();
     }
 
-    private function loadMigrations(){
-
+    private function loadMigrations()
+    {
         include_once __DIR__ . '/../src/database/migrations/2020_12_19_075709_create_key_clients_table.php.stub';
         include_once __DIR__ . '/../src/database/migrations/2020_12_19_075855_create_key_api_credentials_table.php.stub';
 
