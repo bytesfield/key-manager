@@ -12,3 +12,8 @@ v1.0.beta
 
 -   Included Exception Handler
 -   Fixed API response
+
+## 2021-24-05
+v1.0.1
+
+-   Initial Version Release
