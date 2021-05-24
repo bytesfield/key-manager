@@ -10,7 +10,7 @@
 [![Total Downloads](https://poser.pugx.org/bytesfield/key-manager/downloads)](//packagist.org/packages/bytesfield/key-manager)
 
 
-Key Manager is a Laravel Package for generating public and private key pairs storing, retrieving and authenticating using the private key.
+Key Manager is a Laravel Package for generating public and private key pairs storing, retrieving and authenticating requests using the private key value.
 
 ## Installation
 
@@ -25,7 +25,7 @@ composer require bytesfield/key-manager
 Or add the following line to the require block of your `composer.json` file.
 
 ```
-"bytesfield/key-manager": "^1.0.*"
+"bytesfield/key-manager": "1.0.*"
 ```
 
 You'll then need to run `composer install` or `composer update` to download it and have the autoloader updated.
@@ -62,7 +62,7 @@ You can publish the configuration file using this command:
 php artisan key-manager:install
 ```
 
-This publishes a configuration-file named `keymanager.php` with some sensible defaults will be placed in your `config` directory and two migration files `create_key_clients_table` and `create_key_api_credentials_table` places in your `database\migrations` directory:
+This publishes a configuration-file named `keymanager.php` with some sensible defaults will be placed in your `config` directory and two migration files `create_key_clients_table` and `create_key_api_credentials_table` placed in your `database\migrations` directory:
 
 ```php
 <?php
@@ -92,7 +92,7 @@ Generate API Encryption Key by running this command on your terminal
 php artisan encryption:generate
 ```
 
-This will generate an encryption key in your .env like so:
+This will generate an encryption key in your .env:
 
 ```php
 API_ENCRYPTION_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -118,7 +118,7 @@ KeyManager::createClient(string $name, string $type);
 KeyManager::createClient(string $name, string $type, string $status);
 ```
 
-This creates a client and `public` and `private` keys pairs
+This creates a client with `public` and `private` keys pairs
 
 Note : `$status` param can either be `active` or `suspended` while `$type` is dependent on what you want e.g `user` or `admin`.
 
@@ -195,7 +195,7 @@ $this->keyManager->createClient(string $name, string $type);
 $this->keyManager->createClient(string $name, string $type, string $status);
 ```
 
-This creates a client and `public` and `private` keys pairs
+This creates a client with `public` and `private` keys pairs
 
 Note : `$status` param can either be `active` or `suspended` while `$type` is dependent on what you want e.g `user` or `admin`.
 
@@ -254,7 +254,7 @@ Or
 client:create {name} {type} {status=active}
 ```
 
-This creates a client and `public` and `private` keys pairs
+This creates a client with `public` and `private` keys pairs
 
 Note : `$status` param can either be `active` or `suspended` while `$type` is dependent on what you want e.g `user` or `admin`.
 
@@ -314,7 +314,7 @@ public function __construct(){
 }
 ```
 
-This Middleware Authenticates a client with a valid private key `api-auth-key` which is to be passed to the request header.
+This Middleware Authenticates a client's request with a valid private key value `api-auth-key` which is to be passed to the request header.
 
 ### Testing
 
@@ -337,6 +337,9 @@ If you discover any security related issues, please email abrahamudele@gmail ins
 ## Credits
 
 -   [Abraham Udele](https://github.com/bytesfield)
+Find me on
+<a href="https://twitter.com/SaintAbrahams/">Twitter.</a>
+<a href="https://www.linkedin.com/in/abraham-udele-246003130/">Linkedin.</a>
 
 ## License
 

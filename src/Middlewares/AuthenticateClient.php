@@ -44,11 +44,11 @@ class AuthenticateClient
             throw new AuthenticationException('Invalid API private key.');
         }
 
-        if ($apiCredential->status !== 'active') {
+        if ($apiCredential->status !== ApiCredential::STATUSES['ACTIVE']) {
             throw new AuthenticationException('The private key is currently suspended.');
         }
 
-        if ($apiCredential->client->status !== 'active') {
+        if ($apiCredential->client->status !== ApiCredential::STATUSES['ACTIVE']) {
             throw new AuthenticationException('The owner of this private key is currently suspended.');
         }
 
